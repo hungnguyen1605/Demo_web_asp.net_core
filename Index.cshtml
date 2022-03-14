@@ -1,51 +1,7 @@
-﻿@model IEnumerable<webDemo.Models.Category>
-
+﻿
 @{
-    ViewData["Title"] = "Thông tin danh mục";
+    ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 
-<h1 class="mt-4">QUẢN LÝ DANH MỤC</h1>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
-    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Categories" asp-action="Index">Quản lý Danh mục</a></li>
-    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Categories" asp-action="Create">Tạo mới Danh mục</a></li>
-
-</ol>
-<div class="card mb-4">
-    <div class="card-body">
-        <table id="datatablesSimple">
-            <thead>
-                <tr>
-                    <th>CatID</th>
-                    <th>Tên danh mục</th>
-                   <th>Trạng thái</th>
-                    
-                   
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null && Model.Count() > 0)
-                {
-                    foreach (var item in Model)
-                    {
-    <tr>
-        <th scope="row">@item.CatId</th>
-        <th>@item.CatName</th>
-       
-      
-        <th>
-            <a asp-action="Edit" asp-route-id="@item.CatId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.CatId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.CatId">Delete</a>
-        </th>
-    </tr>}
-                }
-            </tbody>
-
-
-        </table>
-    </div>
-</div>
