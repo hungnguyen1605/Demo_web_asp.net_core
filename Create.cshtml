@@ -1,0 +1,96 @@
+﻿@model webDemo.Models.Account
+
+@{
+    ViewData["Title"] = "Thêm mới";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Thêm mới bài viết</h3></div>
+            <ol class="breadcrumb mb-4 breadcrumb">
+                <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Posts" asp-action="Index">Quản lý Bài viết</a></li>
+                <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Posts" asp-action="Create">Tạo mới bài viết</a></li>
+
+            </ol>
+            <div class="card-body">
+                <form asp-area="Admin" asp-controller="Accounts" asp-action="Create" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group row" style="margin:0px;">
+                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">FullName</label>
+                        <div class="col-12 col-sm-8 col-lg-12">
+                            <input class="form-control" id="inputText3" type="text" asp-for="FullName">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin:0px;">
+                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">Email</label>
+                        <div class="col-12 col-sm-8 col-lg-12">
+                            <input class="form-control" id="inputText3" type="text" asp-for="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin:0px;">
+                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">PassWord</label>
+                        <div class="col-12 col-sm-8 col-lg-12">
+                            <input class="form-control" id="inputText3" type="text" asp-for="Password">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin:0px;">
+                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">Số Điện thoại</label>
+                        <div class="col-12 col-sm-8 col-lg-12">
+                            <input class="form-control" id="inputText3" type="text" asp-for="Phone">
+                        </div>
+                    </div>
+                    <div class="row mb-2" style="margin:0px;">
+                        <div class="form-group row col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="inputFirstName">RoleID</label>
+                                    <select class="form-control" id="sel1" name="sellist1" asp-items="@ViewBag.RoleId" required>
+                                     
+                                    </select>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox col-md-6">
+                                <input class="custom-control-input"name="ck1" type="checkbox" asp-for="Active" >
+                                <label class="custom-control-label" for="ck1">Trạng thái</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group row" style="margin:0px;">
+                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">Salt</label>
+                        <div class="col-12 col-sm-8 col-lg-12">
+                            <input class="form-control" id="inputText3" type="text" asp-for="Salt">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin:0px;">
+                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">CreatedDate:</label>
+                        <div class="col-12 col-sm-8 col-lg-12">
+                            <input class="form-control" id="inputText3" type="date" asp-for="CreatedAt">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin:0px;">
+                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">Last loign:</label>
+                        <div class="col-12 col-sm-8 col-lg-12">
+                            <input class="form-control" id="inputText3" type="date" asp-for="LastLogin">
+                        </div>
+                    </div>
+                    
+                    <br />
+                    <div class="form-layout-footer" style="margin:0px;">
+                        <button class="btn btn-primary bd-0">Thêm mới</button>
+                        <button class="btn btn-secondary bd-0"> <a asp-area="Admin" asp-controller="Accounts" asp-action="Index">Trở về</a></button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+

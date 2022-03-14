@@ -1,0 +1,65 @@
+﻿@model IEnumerable<webDemo.Models.Account>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1 class="mt-4">QUẢN LÝ DANH MỤC</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Accounts" asp-action="Index">Quản lý Tài khoản</a></li>
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Accounts" asp-action="Create">Tạo mới Tài khoản</a></li>
+
+</ol>
+<div class="card mb-4">
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Họ và tên</th>
+                    <th>Trạng thái</th>
+                    <th>Quyền truy cập</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.AccountId</th>
+                            <td>
+                                <p>Email: @item.Email</p> 
+                                <p>Phone: @item.Phone</p> 
+                                <p>Time_login: @item.LastLogin</p>
+                            </td>
+                            <td>
+                                @if (item.Active == true)
+                                {
+                                    <span class="badge badge-primary bg-success text-white">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-primary bg-success text-white">Block</span>
+                                }
+                            </td>
+                           
+
+                            <th>
+                                <a asp-action="Edit" asp-route-id="@item.AccountId">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.AccountId">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.AccountId">Delete</a>
+                            </th>
+                        </tr>
+}
+                }
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
