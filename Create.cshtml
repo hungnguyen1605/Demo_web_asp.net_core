@@ -1,117 +1,43 @@
-﻿@model webDemo.Models.Post;
+﻿@model webDemo.Models.Role
 
 @{
-    ViewData["Title"] = "Thêm mới Bài viết";
+    ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <div class="row justify-content-center">
     <div class="col-lg-7">
         <div class="card shadow-lg border-0 rounded-lg mt-5">
-            <div class="card-header"><h3 class="text-center font-weight-light my-4">Thêm mới bài viết</h3></div>
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Thêm mới quyền quản trị</h3></div>
             <ol class="breadcrumb mb-4 breadcrumb">
                 <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Posts" asp-action="Index">Quản lý Bài viết</a></li>
-                <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Posts" asp-action="Create">Tạo mới bài viết</a></li>
+                <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Roles" asp-action="Index">Quản lý quyền truy cập</a></li>
+                <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Roles" asp-action="Create">Tạo mới quyền truy cập</a></li>
 
             </ol>
             <div class="card-body">
-                <form asp-area="Admin" asp-controller="Posts" asp-action="Create" method="post" enctype="multipart/form-data">
-
-                    <div class="form-group row" style="margin:0px;">
-                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">Tiêu đề</label>
-                        <div class="col-12 col-sm-8 col-lg-12">
-                            <input class="form-control" id="inputText3" type="text" asp-for="Title">
-                        </div>
-                    </div>
-                    <div class="form-group row" style="margin:0px;">
-                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">Miêu tả ngắn</label>
-                        <div class="col-12 col-sm-8 col-lg-12">
-                            <input class="form-control" id="inputText3" type="text" asp-for="Scontents">
-                        </div>
-                    </div>
-
-                    <div class="row mb-2" style="margin:0px;">
-                        <div class="form-group row col-md-12">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="inputFirstName">Danh mục cha</label>
-                                    <select class="form-control" id="sel1" name="sellist1"  asp-for="CatId" asp-items="@ViewBag.Danhmuc" required>
-                                        <option value="0" selected>Danh mục gốc</option>
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-                            <div class="form-group row col-md-6">
-                                <div class="col-md-6">
-                                    <label class=" text-sm-right" for="file-2">Ảnh đại diện</label>
-                                    <input class="form-control-file" type="file" name="fThumb" asp-for="Thumb">
-                                </div>
+                <form asp-area="Admin" asp-controller="Roles" asp-action="Create" method="post">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <input class="form-control" id="inputFirstName" placeholder="Enter your RoleName" type="text" asp-for="RoleName"/>
+                                <label for="inputFirstName">RoleName</label>
                             </div>
                         </div>
-
-                    </div>
-                    <div class="form-group row" style="margin:0px;">
-                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">Tags</label>
-                        <div class="col-12 col-sm-8 col-lg-12">
-                            <input class="form-control" id="inputText3" type="text" asp-for="Tag">
-                        </div>
-                    </div>
-                    <div class="form-group row" style="margin:0px;">
-                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">MataKey:</label>
-                        <div class="col-12 col-sm-8 col-lg-12">
-                            <input class="form-control" id="inputText3" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group row" style="margin:0px;">
-                        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="inputText3">MataKey:</label>
-                        <div class="col-12 col-sm-8 col-lg-12">
-                            <input class="form-control" id="inputText3" type="text">
-                        </div>
-                    </div>
-                    <div class="container mt-4 mb-4">
-                        <div class="row justify-content-md-center">
-                            <div class="col-md-12 ">
-                                <label>Bài viết</label>
-                                <div class="form-group">
-                                    <textarea id="editor" asp-for="Contents"></textarea>
-                                </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input class="form-control" id="inputLastName" placeholder="Enter your RoleDescription" type="text"asp-for="RoleDescription" />
+                                <label for="inputLastName"> RoleDescription </label>
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3" style="margin:0px;">
-                        <div class="form-group row col-md-12" style="text-align:center">
-                             <div class="custom-control custom-checkbox col-md-4">
-                            <input class="custom-control-input" asp-for="Published" id="ck1" name="ck1" type="checkbox" data-parsley-multiple="groups" value="bar" data-parsley-mincheck="2" data-parsley-errors-container="#error-container1">
-                            <label class="custom-control-label" for="ck1">Trạng thái</label>
-                          </div>
-                          <div class="custom-control custom-checkbox col-md-4">
-                            <input class="custom-control-input"asp-for="IsHot" id="ck2" name="ck2" type="checkbox" data-parsley-multiple="groups" value="bar2" data-parsley-mincheck="2" data-parsley-errors-container="#error-container1">
-                            <label class="custom-control-label" for="ck2">IsHot</label>
-                          </div>
-                          <div class="custom-control custom-checkbox col-md-4">
-                            <input class="custom-control-input"asp-for="IsNewfeed" id="ck3" name="ck3" type="checkbox" data-parsley-multiple="groups" value="bar3" data-parsley-mincheck="2" required="" data-parsley-errors-container="#error-container1">
-                            <label class="custom-control-label" for="ck3">IsNewfeed</label>
-                          </div>
-                        </div>
+                    <div class="form-layout-footer">
+                        <button class="btn btn-primary bd-0">Thêm mới</button>
+                        <button class="btn btn-secondary bd-0"> <a asp-action="Index">Trở về</a></button>
                     </div>
-                            <br />
-                            <div class="form-layout-footer" style="margin:0px;">
-                                <button class="btn btn-primary bd-0">Thêm mới</button>
-                                <button class="btn btn-secondary bd-0"> <a asp-area="Admin" asp-controller="Pots" asp-action="Index">Trở về</a></button>
-                            </div>
-
                 </form>
             </div>
 
         </div>
     </div>
 </div>
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
-<script>
-  tinymce.init({
-    selector: 'textarea#editor',
-    menubar: false
-  });
-</script>
