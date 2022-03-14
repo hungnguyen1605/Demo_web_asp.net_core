@@ -1,7 +1,63 @@
-﻿
+﻿@model IEnumerable<webDemo.Models.Post>
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý tin đăng";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 
+<h1 class="mt-4">QUẢN LÝ Bài viết</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Posts" asp-action="Index">Quản lý tin đăng</a></li>
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Posts" asp-action="Create">Tạo mới tin đăng</a></li>
+
+</ol>
+<div class="card mb-4">
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th> danh mục</th>
+                    <th>Trạng thái</th>
+                    <th>Tiêu đề</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        string url = $"/{item.Alias}.html";
+                <tr>
+                    <th scope="row">@item.PostId</th>
+                    <th><a href="/@item.Cat.Alias">@item.Cat.CatName</a></th>
+                    <th><a href="/@url">@item.Title</a></th>
+                    <th>
+                        @if (item.Published == true)
+                        {
+                            <span class="badge badge-primary bg-success text-white">Public</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-primary bg-success text-white">NON-Public</span>
+                        }
+                    </th>
+
+                    <th>
+                        <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
+                        <a href="@url" target="_blank">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+                    </th>
+                </tr>
+}
+                }
+            </tbody>
+
+
+        </table>
+    </div>
+</div>
